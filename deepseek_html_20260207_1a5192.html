@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ядро лидерства | Селф-менеджмент – Исследования и практика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        :root {
+            --primary-dark: #1a365d; /* Глубокий синий, цвет доверия и ума */
+            --primary-light: #2d74b4; /* Акцентный синий */
+            --accent-gold: #C9A96C; /* Золотой, цвет ценности и ядра */
+            --light-bg: #f8f9fa;
+            --dark-text: #2d3748;
+            --light-text: #4a5568;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Шапка и навигация */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo i {
+            color: var(--accent-gold);
+        }
+        .logo span {
+            color: var(--primary-light);
+        }
+        nav a {
+            color: var(--dark-text);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        nav a:hover, nav a.active {
+            color: var(--primary-light);
+        }
+        nav a:hover:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+        /* Главный герой-баннер */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(255,255,255,1) 100%);
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: var(--accent-gold);
+            position: relative;
+            display: inline-block;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--light-text);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary-dark));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(45, 116, 180, 0.3);
+            margin: 0 10px 20px;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(45, 116, 180, 0.4);
+        }
+        .cta-button.secondary {
+            background: white;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-light);
+            box-shadow: none;
+        }
+        .cta-button.secondary:hover {
+            background: var(--light-bg);
+        }
+        .qrcode-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: var(--shadow);
+        }
+        .qrcode-container {
+            text-align: center;
+        }
+        .qrcode-placeholder {
+            width: 180px;
+            height: 180px;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+        }
+        .qrcode-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+        }
+        /* Блоки разделов */
+        section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        /* О проекте */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .about-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .about-image {
+            flex: 1;
+            height: 350px;
+            background: linear-gradient(145deg, var(--primary-light), var(--primary-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 6rem;
+            box-shadow: var(--shadow);
+        }
+        /* Темы канала */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .topic-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary-light);
+        }
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .topic-card i {
+            font-size: 2.5rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+        }
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        /* Об авторе */
+        .author-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+        }
+        .author-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 2rem;
+            border: 5px solid var(--accent-gold);
+        }
+        .author-info h3 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        .author-tag {
+            display: inline-block;
+            background: rgba(201, 169, 108, 0.15);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 1rem 0 1.5rem;
+            border: 1px solid rgba(201, 169, 108, 0.3);
+        }
+        /* Контакты */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        .contact-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: var(--primary-light);
+        }
+        /* Подвал */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        .copyright {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.7rem; }
+            .about-content { flex-direction: column; }
+            .about-image { width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .header-content nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .topics-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .footer-links { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-gem"></i> Ядро<span>Лидерства</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <a href="#about" class="active">О проекте</a>
+                <a href="#topics">Темы канала</a>
+                <a href="#author">Об авторе</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h1>Ядро лидерства: <span>Селф-менеджмент</span> для думающих профессионалов</h1>
+            <p>Исследования социальной психологии, практики управления командами и личного развития. Глубокие разборы, научные принципы и прикладные инструменты для тех, кто создаёт будущее.</p>
+            <div>
+                <a href="https://t.me/+nWaN1p-l2u0xN2Yy" target="_blank" class="cta-button">
+                    <i class="fab fa-telegram-plane"></i> Подписаться на канал
+                </a>
+                <a href="#about" class="cta-button secondary">
+                    <i class="fas fa-book-open"></i> Узнать больше
+                </a>
+            </div>
+            <div class="qrcode-section">
+                <div class="qrcode-container">
+                    <div class="qrcode-placeholder">
+                        <i class="fas fa-qrcode"></i>
+                        <span>QR-код для подписки</span>
+                    </div>
+                    <p>Наведите камеру телефона, чтобы перейти в Telegram-канал</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О проекте -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">О проекте</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Этот проект — мостик между академическим исследованием и реальной практикой управления. Я верю, что эффективное лидерство начинается с глубокого понимания себя и социальных процессов.</p>
+                    <p>Здесь я делюсь результатами своих исследований в области социальной психологии, самоуправляемых команд и распределённого лидерства, а также рефлексирую на тему личной эффективности и осознанного развития карьеры.</p>
+                    <p>Канал будет полезен руководителям, HR-специалистам, исследователям и всем, кто интересуется механизмами работы команд, психологией влияния и созданием устойчивых организаций будущего.</p>
+                    <a href="https://t.me/+nWaN1p-l2u0xN2Yy" target="_blank" class="cta-button" style="margin-top: 20px;">
+                        <i class="fab fa-telegram-plane"></i> Присоединиться к исследованию
+                    </a>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-brain"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Темы канала -->
+    <section id="topics" style="background-color: rgba(26, 54, 93, 0.02);">
+        <div class="container">
+            <h2 class="section-title">Темы канала</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.2rem; color: var(--light-text);">
+                Фокус на исследованиях и практиках, которые меняют подход к управлению
+            </p>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Социальная психология групп</h3>
+                    <p>Динамика, неформальное лидерство, принятие решений, феномен shared leadership и самоуправляемые команды.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-chess-king"></i>
+                    <h3>Лидерство будущего</h3>
+                    <p>Эволюция от вертикальных моделей к распределённым. Роль эмоционального интеллекта, ценностей и видения.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-user-cog"></i>
+                    <h3>Селф-менеджмент</h3>
+                    <p>Управление энергией, когнитивные стратегии, архетипы в карьере, профилактика выгорания и поддержание ресурсности.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Исследования и методология</h3>
+                    <p>Как изучать сложные социальные явления. Обзор научных работ, дизайн экспериментов, работа с данными.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Карьерная стратегия</h3>
+                    <p>Построение пути в науке и бизнесе, наставничество, публичность, баланс амбиций и целостности.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Философия практики</h3>
+                    <p>Рефлексивные заметки о связи теории и практики, этике управления, создании смыслов в работе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Об авторе -->
+    <section id="author">
+        <div class="container">
+            <h2 class="section-title">Об авторе</h2>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="author-info">
+                    <h3>Голунова Елизавета</h3>
+                    <div class="author-tag">Аспирантка МГУ</div>
+                    <p><strong>Социальный психолог-исследователь лидерства и команд</strong></p>
+                    <p>Провожу исследования самоуправляемых команд и распределённого лидерства на факультете психологии МГУ им. М.В. Ломоносова. Практический опыт работы в крупных проектах позволяет мне соединять научную строгость с запросами реального бизнеса.</p>
+                    <p>Верию в силу осознанного управления и целостного подхода к развитию организаций и личности.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" style="padding-bottom: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Присоединяйтесь к диалогу</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; font-size: 1.2rem; color: var(--light-text);">
+                Подписывайтесь на Telegram-канал, чтобы не пропускать новые исследования, разборы кейсов и практические материалы.
+            </p>
+            <div style="text-align: center;">
+                <a href="https://t.me/+nWaN1p-l2u0xN2Yy" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    <i class="fab fa-telegram-plane"></i> Перейти в Telegram-канал
+                </a>
+            </div>
+            <div class="contact-links">
+                <a href="https://t.me/+nWaN1p-l2u0xN2Yy" target="_blank" class="contact-link">
+                    <i class="fab fa-telegram"></i> Основной канал "Ядро лидерства"
+                </a>
+                <a href="mailto:example@example.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> Для сотрудничества
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#about">О проекте</a>
+                <a href="#topics">Темы</a>
+                <a href="#author">Автор</a>
+                <a href="#contact">Подписаться</a>
+                <a href="#">Конфиденциальность</a>
+            </div>
+            <p>© 2023 Ядро лидерства | Селф-менеджмент. Все права защищены.</p>
+            <p class="copyright">Материалы канала основаны на научных исследованиях и личном практическом опыте. При использовании материалов ссылка на источник обязательна.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.querySelector('header nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if (nav.style.display === 'flex') {
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.backgroundColor = 'white';
+                nav.style.padding = '2rem';
+                nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                nav.style.gap = '1.5rem';
+            }
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        // Закрываем мобильное меню после клика
+                        if(window.innerWidth <= 768) {
+                            document.querySelector('header nav').style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Динамическое обновление года в подвале
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearSpan = document.querySelector('footer p');
+            if(yearSpan) {
+                yearSpan.innerHTML = yearSpan.innerHTML.replace('2023', new Date().getFullYear());
+            }
+        });
+    </script>
+</body>
+</html>
